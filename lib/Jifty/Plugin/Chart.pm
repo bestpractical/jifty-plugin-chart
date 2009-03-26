@@ -4,7 +4,7 @@ use warnings;
 package Jifty::Plugin::Chart;
 use base qw/ Jifty::Plugin Class::Accessor::Fast /;
 
-our $VERSION = '0.01';
+our $VERSION = '0.9';
 
 use Jifty::Plugin::Chart::Web;
 use Scalar::Util qw/ blessed /;
