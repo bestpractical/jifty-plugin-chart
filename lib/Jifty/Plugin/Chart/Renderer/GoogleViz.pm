@@ -5,6 +5,10 @@ use base 'Jifty::Plugin::Chart::Renderer';
 
 use Jifty::JSON 'objToJson';
 
+=head1 NAME
+
+Jifty::Plugin::Chart::Renderer::GoogleViz - chart renderer using Google Charts JS
+
 =head2 init
 
 We need to load Google's JS.

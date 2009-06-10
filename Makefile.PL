@@ -1,6 +1,6 @@
-use inc::Module::Install 0.46;
+use inc::Module::Install;
 name('Jifty-Plugin-Chart');
-version_from('lib/Jifty/Plugin/Chart.pm');
+all_from('lib/Jifty/Plugin/Chart.pm');
 
 requires('Jifty');
 recommends('Chart::Base');
