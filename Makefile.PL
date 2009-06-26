@@ -2,7 +2,7 @@ use inc::Module::Install;
 name('Jifty-Plugin-Chart');
 all_from('lib/Jifty/Plugin/Chart.pm');
 
-requires('Jifty');
+requires('Jifty' => '0.90409');
 recommends('Chart::Base');
 recommends('GD');          # for a testing hack
 recommends('GD::Graph');
