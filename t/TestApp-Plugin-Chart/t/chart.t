@@ -4,8 +4,10 @@ use warnings;
 
 # XXX FIXME This is here to prevent a segfault on my machine during testing.
 #   -- sterling
+# typo: s/Chart::pie/Chart::Pie/ certainly fix this
+#   -- yves (found by gregor Herrmann)
 use Test::More;
-eval "use GD; use Chart::pie; 1";
+eval "use GD; use Chart::Pie; 1";
 if ($@) {
     plan skip_all => 'Chart is not installed.';
 }
