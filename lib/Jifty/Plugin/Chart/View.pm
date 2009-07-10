@@ -121,8 +121,8 @@ template 'chart/xmlswf' => sub {
         my $label = $args->{legend}[$i];
 
         push @{$chart{'chart_data'}{'row'}}, {
+            string => [ defined $label ? $label : {} ],
             number => $args->{data}[$i],
-            defined($label) ? (string => [ $label ]) : (),
         };
     }
 
