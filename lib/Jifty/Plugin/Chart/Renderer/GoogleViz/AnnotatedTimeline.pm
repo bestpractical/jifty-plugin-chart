@@ -5,9 +5,12 @@ use base 'Jifty::Plugin::Chart::Renderer::GoogleViz';
 
 use constant packages_to_load => 'annotatedtimeline';
 use constant chart_class => 'google.visualization.AnnotatedTimeLine';
-use constant draw_params => {
-    displayAnnotations => "true",
-};
+
+sub draw_params {
+    my $self = shift;
+    my $opts = shift || {};
+    return { displayAnnotations => 'true', %$opts };
+}
 
 1;
 

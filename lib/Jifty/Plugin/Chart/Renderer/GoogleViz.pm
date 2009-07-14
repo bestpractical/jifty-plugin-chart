@@ -32,9 +32,9 @@ sub render {
     my $chart_id = 'chart_' . Jifty->web->serial;
     my $chart_class = $self->chart_class;
     my $load_params = objToJson($self->load_params);
-    my $draw_params = objToJson($self->draw_params);
+    my $draw_params = objToJson($self->draw_params($args{options}));
     my $callback_name = 'callback_' . Jifty->web->serial;
-
+    
     Jifty->web->out(<< "JS_HEADER");
         <script type="text/javascript">
             google.load('visualization', 1, $load_params);
@@ -58,7 +58,7 @@ JS_FOOTER
             style="width: $args{width}; height: $args{height};"
             id="$chart_id"
         ></div>
-    });
+    }); #"
 
     return;
 }
