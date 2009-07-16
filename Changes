@@ -1,8 +1,8 @@
 Revision history for Perl module Jifty::Plugin::Chart
 
 1.01  Wed, 15 Jul 2009 10:48:45 +0200
-    - Charts are now able to accept options (trs)
-    - Labels for xmlswf (trs) 
+    - GoogleViz charts are now able to specify options (trs)
+    - Fix chart labels for xmlswf (trs) 
 
 1.00 Fri, 26 Jun 2009 10:18:45 +0200
     - add dep on Jifty 0.90409 to use Jifty::Test::Dist
