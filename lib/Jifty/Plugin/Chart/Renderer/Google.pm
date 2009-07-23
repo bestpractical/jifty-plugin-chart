@@ -61,6 +61,9 @@ sub render {
         geo                     => 't',
     );
 
+    # The Google chart types themselves are valid too
+    $types{$_} = $_ for values %types;
+
     # Make sure the type is ready to be used
     my $type = $types{ lc $args{type} } || undef;
 
@@ -281,8 +284,20 @@ sub render {
             $url .= "&chxs=" . join '|', @styles if @styles;
 
             # label positions
-            $url .= "&chxp=" . join ',', @{ $args{'positions'} }
-                if defined $args{'positions'};
+            if ( defined $args{'positions'} ) {
+                $url .= "&chxp=";
+                if ( ref $args{'positions'}->[0] eq 'ARRAY' ) {
+                    my @sets;
+                    my $idx = 0;
+                    for my $set ( @{ $args{'positions'} } ) {
+                        push @sets, join ',', $idx, @$set;
+                        $idx++;
+                    }
+                    $url .= join '|', @sets;
+                } else {
+                    $url .= join ',', 0, @{$args{'positions'}};
+                }
+            }
         }
     }
 
