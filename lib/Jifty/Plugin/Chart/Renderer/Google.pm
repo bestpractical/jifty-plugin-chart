@@ -28,6 +28,7 @@ Implemented the L<Jifty::Plugin::Chart::Renderer/render> method interface.
 sub render {
     my $self = shift;
     my %args = (
+        encoding  => 'text',
         width     => 200,
         height    => 100,
         labels    => [],
@@ -200,7 +201,7 @@ sub render {
         }
 
         my @min = map { $_ - $args{'min_minus'} } @{ $args{'min_value'} };
-        my @max = map { $_ - $args{'max_plus'}  } @{ $args{'max_value'} };
+        my @max = map { $_ + $args{'max_plus'}  } @{ $args{'max_value'} };
 
         # repeat if necessary
         push @min, ($min[-1]) x (@{ $args{'data'} } - @min);
@@ -228,10 +229,15 @@ sub render {
             ];
         }
 
-        # Let's do text encoding with data scaling
-        $url .= "&chd=t:" . join '|', map { join ',', @$_ } @data;
-
-        $url .= "&chds=" . join(',', mesh @min, @max);
+        if ( $args{'encoding'} eq 'simple' ) {
+            # We need to do simple encoding
+            $url .= "&chd=s:" . $self->_simple_encode_data( $args{'calculated_max'}, $args{'data'} );
+        }
+        else {
+            # Let's do text encoding with data scaling
+            $url .= "&chd=t:" . join '|', map { join ',', @$_ } @data;
+            $url .= "&chds=" . join(',', mesh @min, @max);
+        }
     }
 
     # Add a title
