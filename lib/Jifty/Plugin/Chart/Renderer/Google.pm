@@ -169,7 +169,7 @@ sub render {
         $url .= "&chld=" . join '', @{ $args{'codes'} };
         
         # We need to do simple encoding
-        $url .= "&chd=s:" . $self->_simple_encode_data( $args{'max_value'}, @{$args{'data'}} );
+        $url .= "&chd=s:" . $self->_simple_encode_data( $args{'max_value'}, $args{'data'} );
     }
     else {
         # Deal with out of range horizontal markers here by fixing our range
@@ -388,14 +388,17 @@ sub _simple_encode_data {
     my $i = 0;
     my $result = '';
     my @map = ('A'..'Z', 'a'..'z', 0..9);
-    for my $value ( @$data ) {
-        if ( looks_like_number($value) ) {
-            my $index = int($value / $maxes->[$i] * (@map - 1));
-            $index = 0 if $index < 0;
-            $index = @map if $index > @map;
-            $result .= $map[$index];
-        } else {
-            $result .= '_';
+    for my $set ( @$data ) {
+        $result .= ',' if $i; # if this isn't the first set
+        for my $value ( @$set ) {
+            if ( looks_like_number($value) ) {
+                my $index = int($value / $maxes->[$i] * $#map);
+                $index = 0 if $index < 0;
+                $index = $#map if $index > $#map;
+                $result .= $map[$index];
+            } else {
+                $result .= '_';
+            }
         }
         ++$i;
     }
