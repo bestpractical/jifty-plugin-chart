@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base 'Jifty::Plugin::Chart::Renderer';
 
-use Jifty::JSON 'objToJson';
+use Jifty::JSON 'encode_json';
 
 =head1 NAME
 
@@ -31,8 +31,8 @@ sub render {
 
     my $chart_id = 'chart_' . Jifty->web->serial;
     my $chart_class = $self->chart_class;
-    my $load_params = objToJson($self->load_params);
-    my $draw_params = objToJson($self->draw_params($args{options}));
+    my $load_params = encode_json($self->load_params);
+    my $draw_params = encode_json($self->draw_params($args{options}));
     my $callback_name = 'callback_' . Jifty->web->serial;
     
     Jifty->web->out(<< "JS_HEADER");
@@ -207,7 +207,7 @@ sub encode_value {
         die "Can't handle the date '$value'";
     }
 
-    return objToJson($value);
+    return encode_json($value);
 }
 
 1;

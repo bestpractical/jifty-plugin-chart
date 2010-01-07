@@ -90,9 +90,9 @@ $div
 var plot = function() {
     var plotter = PlotKit.EasyPlot(
         "$args{type}",
-        @{[Jifty::JSON::objToJson( $args{options} )]},
+        @{[Jifty->web->escape(Jifty::JSON::encode_json( $args{options} ))]},
         \$("$chart_id"),
-        @{[Jifty::JSON::objToJson( $args{data} )]}
+        @{[Jifty->web->escape(Jifty::JSON::encode_json( $args{data} ))]}
     );
 };
 YAHOO.util.Event.onAvailable( "$chart_id", plot );
