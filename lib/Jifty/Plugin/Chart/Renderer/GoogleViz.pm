@@ -18,7 +18,7 @@ We need to load Google's JS.
 sub init {
     my $self = shift;
 
-    Jifty->web->add_external_javascript("http://www.google.com/jsapi");
+    Jifty->web->add_external_javascript("//www.google.com/jsapi");
 }
 
 =head2 render
