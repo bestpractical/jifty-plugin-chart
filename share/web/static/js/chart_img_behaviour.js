@@ -6,7 +6,6 @@
 
 Behaviour.register({
     'img.chart': function(e) {
-        var dim = Element.getDimensions(e);
         var url = e.src;
 
         var path  = url;
@@ -23,8 +22,8 @@ Behaviour.register({
             }
         }
 
-        query.set('width', dim.width + 'px');
-        query.set('height', dim.height + 'px');
+        query.set('width', jQuery(e).width() + 'px');
+        query.set('height', jQuery(e).height() + 'px');
 
         url = path + '?' + query.toQueryString();
 
