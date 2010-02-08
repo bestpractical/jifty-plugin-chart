@@ -4,7 +4,7 @@ framework:
   ApplicationClass: TestApp::Plugin::Chart
   ApplicationName: TestApp-Plugin-Chart
   ApplicationUUID: D16D885C-3E10-11DC-ABE9-A583E6FF98E1
-  ConfigFileVersion: 2
+  ConfigFileVersion: 5
   Database: 
     CheckSchema: 1
     Database: testapp_plugin_chart
