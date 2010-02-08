@@ -23,7 +23,7 @@ template 'chart/chart' => sub {
     my $args = get 'args';
 
     # Set the output type to the PNG file type
-    Jifty->handler->apache->content_type('image/png');
+    Jifty->web->response->content_type('image/png');
 
     # Render the chart and output the PNG file generated
     eval {
@@ -53,7 +53,7 @@ template 'chart/gd_graph' => sub {
     my $args = get 'args';
 
     # Set the output type to the PNG file type
-    Jifty->handler->apache->content_type('image/png');
+    Jifty->web->response->content_type('image/png');
 
     # Render the chart and output the PNG file generated
     eval {
@@ -85,7 +85,7 @@ template 'chart/xmlswf' => sub {
     my $args = get 'args';
 
     # Set the output type to the XML file type
-    Jifty->handler->apache->content_type('application/xml');
+    Jifty->web->response->content_type('application/xml');
 
     # The KeyAttr thing is a bloody hack to get ordering right
     my $xml = $args->{class}->new(
